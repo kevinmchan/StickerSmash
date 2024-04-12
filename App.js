@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
   imageContainer: {
     flexGrow: 1,
     flexShrink: 0,
-    marginVertical: 5,
+    paddingVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   footerContainer: {
-    marginVertical: 5,
-    height: 220,
+    marginBottom: 10,
+    height: 200,
     alignItems: 'center',
     justifyContent: 'center',
   },
