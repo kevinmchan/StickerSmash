@@ -5,12 +5,15 @@ import { useState } from 'react';
 import ImageViewer from './components/ImageViewer';
 import Button from './components/Button';
 import * as ImagePicker from 'expo-image-picker';
+import CircleButton from './components/CircleButton';
+import IconButton from './components/IconButton';
 
 
 const PlaceholderImage = require('./assets/images/background-image.png');
 
 export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showOptions, setShowOptions] = useState(false);
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -32,8 +35,20 @@ export default function App() {
           <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
         </View>
         <View style={styles.footerContainer}>
-          <Button label="Choose a photo" theme='primary' onPress={pickImageAsync} />
-          <Button label="Use this photo" />
+          {
+            showOptions ? (
+              <View style={styles.optionsContainer}>
+                <IconButton onPress={() => setShowOptions(false)} icon="undo" label="Reset" />
+                <CircleButton onPress={() => True} />
+                <IconButton onPress={() => True} icon="save-alt" label="Save" />
+              </View>
+            ) : (
+              <>
+                <Button label="Choose a photo" theme="primary" onPress={pickImageAsync} />
+                <Button label="Use this photo" onPress={() => setShowOptions(true)} />
+              </>
+            )
+          }
         </View>
         <StatusBar style="auto" />
       </ScrollView>
@@ -59,6 +74,15 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     paddingVertical: 10,
+    height: 180,
     alignItems: 'center',
-  }
+    justifyContent: 'center',
+  },
+  optionsContainer: {
+    flex: 1,
+    width: 240,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });

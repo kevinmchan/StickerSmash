@@ -17,7 +17,7 @@ export default function Button({ label, theme, onPress }) {
 
 function PrimaryButton({ label, onPress }) {
     return (
-        <View style={[styles.buttonContainer, { borderWidth: 4, borderColor: '#ffd33d', borderRadius: 18 }]}>
+        <View style={[styles.buttonContainer, { borderColor: '#ffd33d' }]}>
             <Pressable
                 onPress={onPress}
                 style={[styles.button, { backgroundColor: '#fff' }]}>
@@ -34,9 +34,13 @@ const styles = StyleSheet.create({
         height: 68,
         marginHorizontal: 20,
         padding: 3,
+        margin: 3,
+        borderWidth: 3,
+        borderRadius: 18,
+        borderColor: '#fff',
     },
     button: {
-        borderRadius: 10,
+        borderRadius: 12,
         width: '100%',
         height: '100%',
         alignItems: 'center',
