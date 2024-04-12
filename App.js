@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { useState } from 'react';
 
 import ImageViewer from './components/ImageViewer';
@@ -27,14 +27,16 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
-      </View>
-      <View style={styles.footerContainer}>
-        <Button label="Choose a photo" theme='primary' onPress={pickImageAsync} />
-        <Button label="Use this photo" />
-      </View>
-      <StatusBar style="auto" />
+      <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
+        <View style={styles.imageContainer}>
+          <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
+        </View>
+        <View style={styles.footerContainer}>
+          <Button label="Choose a photo" theme='primary' onPress={pickImageAsync} />
+          <Button label="Use this photo" />
+        </View>
+        <StatusBar style="auto" />
+      </ScrollView>
     </View>
   );
 }
@@ -43,14 +45,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#25292e',
-    alignItems: 'center',
+    alignItems: 'stretch',
+  },
+  contentContainer: {
+    flex: 1,
   },
   imageContainer: {
-    flex: 3,
-    paddingTop: 50,
+    flexGrow: 3,
+    flexShrink: 0,
+    paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footerContainer: {
-    flex: 1,
+    paddingVertical: 10,
     alignItems: 'center',
   }
 });
