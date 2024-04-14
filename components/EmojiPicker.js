@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#1a1d21',
     alignItems: 'center',
-    paddingHorizontal: 6,
+    paddingHorizontal: 10,
   },
   pickerContainer: {
   },
